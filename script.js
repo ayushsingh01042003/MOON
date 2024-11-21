@@ -40,13 +40,51 @@ function createCartesianPoint(latitude, longitude) {
     return MOON_ELLIPSOID.cartographicToCartesian(cartographic);
 }
 
-function plotPath(coordinates) {
-    const positions = coordinates.map(coord => createCartesianPoint(coord.latitude, coord.longitude));
+function createStartingPoint(latitude, longitude) {
+    const position = createCartesianPoint(latitude, longitude);
+    
+    // Add a larger, red point for the starting position
+    viewer.entities.add({
+        position: position,
+        point: {
+            pixelSize: 16,
+            color: Cesium.Color.RED,
+            outlineColor: Cesium.Color.WHITE,
+            outlineWidth: 2,
+            disableDepthTestDistance: Number.POSITIVE_INFINITY
+        }
+    });
 
-    // Add points
+    // Add a label for the starting point
+    viewer.entities.add({
+        position: position,
+        label: {
+            text: 'Starting Point',
+            font: '14pt sans-serif',
+            fillColor: Cesium.Color.WHITE,
+            outlineColor: Cesium.Color.BLACK,
+            outlineWidth: 2,
+            style: Cesium.LabelStyle.FILL_AND_OUTLINE,
+            verticalOrigin: Cesium.VerticalOrigin.BOTTOM,
+            pixelOffset: new Cesium.Cartesian2(0, -20),
+            disableDepthTestDistance: Number.POSITIVE_INFINITY
+        }
+    });
+
+    return position;
+}
+
+function plotPath(coordinates) {
+    // Create the starting point (85.28°S, 31.20°E)
+    const startingPosition = createStartingPoint(-85.28, 31.20);
+
+    // Create positions array starting with the hardcoded starting point
+    const positions = [startingPosition, ...coordinates.map(coord => createCartesianPoint(coord.latitude, coord.longitude))];
+
+    // Add points (skipping the starting point as it's already added)
     coordinates.forEach((coord, index) => {
         viewer.entities.add({
-            position: positions[index],
+            position: positions[index + 1], // +1 because the starting point is at index 0
             point: {
                 pixelSize: 8,
                 color: Cesium.Color.YELLOW,
