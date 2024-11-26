@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moon Path Plotter</title>
+    <title>Enhanced Moon Path Plotter</title>
     <script src="https://cesium.com/downloads/cesiumjs/releases/1.104/Build/Cesium/Cesium.js"></script>
     <link href="https://cesium.com/downloads/cesiumjs/releases/1.104/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
         body {
             margin: 0;
@@ -23,19 +24,76 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0.7);
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             color: white;
             font-size: 24px;
             z-index: 1000;
         }
+        .spinner {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #3498db;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .cesium-viewer-bottom {
+            display: none;
+        }
+        .control-button {
+            background-color: rgba(255, 255, 255, 0.8);
+            border: none;
+            color: black;
+            padding: 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
     <div id="cesiumContainer"></div>
-    <div id="loadingOverlay">Loading...</div>
+    <div id="loadingOverlay">
+        <div class="spinner mb-4"></div>
+        <div>Loading Moon Path Plotter...</div>
+    </div>
+    <div id="controls" class="absolute top-4 left-4 bg-white bg-opacity-80 p-4 rounded-lg shadow-md">
+        <h1 class="text-2xl font-bold mb-4">Moon Path Plotter</h1>
+        <div class="mb-4">
+            <label for="pathVisibility" class="block mb-2">Path Visibility:</label>
+            <input type="range" id="pathVisibility" min="0" max="1" step="0.1" value="1" class="w-full">
+        </div>
+        <div class="mb-4">
+            <label for="dayNightCycle" class="block mb-2">Day/Night Cycle:</label>
+            <input type="range" id="dayNightCycle" min="0" max="24" step="0.5" value="12" class="w-full">
+        </div>
+        <button id="toggleLabels" class="control-button w-full mb-2">Toggle Labels</button>
+        <div class="grid grid-cols-3 gap-2">
+            <button id="zoomIn" class="control-button">Zoom In</button>
+            <button id="zoomOut" class="control-button">Zoom Out</button>
+            <button id="resetView" class="control-button">Reset View</button>
+            <button id="panLeft" class="control-button">Pan Left</button>
+            <button id="panRight" class="control-button">Pan Right</button>
+            <button id="panUp" class="control-button">Pan Up</button>
+            <button id="panDown" class="control-button">Pan Down</button>
+        </div>
+    </div>
+    <div id="infoBox" class="absolute bottom-4 right-4 bg-white bg-opacity-80 p-4 rounded-lg shadow-md max-w-md">
+        <h2 class="text-xl font-bold mb-2">Current View</h2>
+        <p id="cameraInfo"></p>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
