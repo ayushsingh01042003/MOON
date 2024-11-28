@@ -207,6 +207,13 @@ function setupEventListeners() {
         viewer.camera.moveDown(panAmount);
     });
 
+    const toggleControlsButton = document.getElementById('toggleControls');
+    const controlsPanel = document.getElementById('controls');
+
+    toggleControlsButton.addEventListener('click', () => {
+        controlsPanel.classList.toggle('show');
+    });
+
     viewer.camera.changed.addEventListener(updateCameraInfo);
 
     // Add click event listener for entity selection
