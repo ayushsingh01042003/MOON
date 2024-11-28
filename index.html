@@ -61,10 +61,35 @@
             cursor: pointer;
             border-radius: 5px;
         }
+        #toggleControls {
+            display: none;
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            z-index: 1001;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 8px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        @media (max-width: 768px) {
+            #controls {
+                display: none;
+                max-height: 80vh;
+                overflow-y: auto;
+            }
+            #controls.show {
+                display: block;
+            }
+            #toggleControls {
+                display: block;
+            }
+        }
     </style>
 </head>
 <body>
     <div id="cesiumContainer"></div>
+    <button id="toggleControls" class="control-button">☰</button>
     <div id="loadingOverlay">
         <div class="spinner mb-4"></div>
         <div>Loading Moon Path Plotter...</div>
