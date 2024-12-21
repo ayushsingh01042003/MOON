@@ -4,7 +4,7 @@ This project is a **3D route planner** for plotting paths on the moon's surface,
 
 ---
 
-## 🚀 Features
+## Features
 - **3D Moon Surface Rendering**: Utilizes **CesiumJS** to display the moon in a realistic 3D environment.
 - **Custom Path Plotting**: Load and visualize a path by providing a JSON file with coordinates.
 - **Interactive Navigation**: Pan, zoom, and rotate around the rendered moon to analyze the path from multiple perspectives.
@@ -12,7 +12,7 @@ This project is a **3D route planner** for plotting paths on the moon's surface,
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 The key components of the project are:
 - **index.html**: Entry point for the application.
 - **styles.css**: Styling for the interface.
@@ -21,14 +21,14 @@ The key components of the project are:
 
 ---
 
-## 📋 Prerequisites
+## Prerequisites
 To run this project, ensure you have:
 - **Live Server** (e.g., VS Code's Live Server extension) or any local development server to serve the HTML file.
 - A modern browser with WebGL support.
 
 ---
 
-## 🛠️ How to Run
+## How to Run
 1. **Clone the repository**:
    ```bash
    git clone https://github.com/yourusername/Route-Planner.git
@@ -45,7 +45,7 @@ To run this project, ensure you have:
 
 ---
 
-## 📄 JSON Format for Coordinates
+## JSON Format for Coordinates
 Ensure your `coordinates.json` follows this format:
 ```json
 [
@@ -60,38 +60,12 @@ Ensure your `coordinates.json` follows this format:
 
 ---
 
-## 🌌 Technologies Used
+## Technologies Used
 - **CesiumJS**: For 3D visualization of the moon's surface.
 - **HTML, CSS, JavaScript**: Core technologies for building the web application.
 - **JSON**: Data format for providing coordinates.
 
 ---
-
-## 🌟 Future Improvements
-- Allow users to upload custom JSON files.
-- Add real-time interactivity for creating paths dynamically.
-- Improve UI with additional controls and overlays.
-
----
-
-## 🤝 Contributing
-Contributions are welcome! If you'd like to improve the project:
-1. Fork the repository.
-2. Create a new branch (`feature/your-feature`).
-3. Commit your changes.
-4. Open a Pull Request.
-
----
-
-## 📝 License
-This project is licensed under the **MIT License**.
-
----
-
 ## 🔗 Live Demo
 [Live Demo of Route Planner](https://bhardwajarjit.github.io/Route-Planner/)
-
----
-
-**Happy Moon Mapping! 🌕**
 
